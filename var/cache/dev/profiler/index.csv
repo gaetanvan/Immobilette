@@ -48,3 +48,9 @@ e76101,127.0.0.1,GET,https://127.0.0.1:8000/,1673305579,,200
 c609bd,127.0.0.1,GET,https://127.0.0.1:8001/,1673342373,,200
 94c6b8,127.0.0.1,GET,https://127.0.0.1:8001/favicon.ico,1673342377,91e7c1,404
 91e7c1,127.0.0.1,GET,https://127.0.0.1:8001/favicon.ico,1673342377,,404
+2f699a,127.0.0.1,GET,https://127.0.0.1:8000/,1673343493,,200
+d52ad0,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1673343495,fd75cf,404
+fd75cf,127.0.0.1,GET,https://127.0.0.1:8000/favicon.ico,1673343495,,404
+ca0503,127.0.0.1,GET,https://127.0.0.1:8000/admin,1673344222,,200
+befdc3,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1673344227,a41d39,500
+a41d39,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1673344227,,500
