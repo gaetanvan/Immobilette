@@ -64,7 +64,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
         // line 13
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/immobilette.css"), "html", null, true);
         echo "\">
-
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css\">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -89,140 +89,51 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 </head>
 <body>
 <header>
-    <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">
-        <a class=\"navbar-brand\" href=\"";
-        // line 37
+    <nav class=\"container text-center mt-3 mb-3\">
+        <div class=\"row align-items-center justify-content-center navigationbar\">
+            <div class=\"col mx-auto\">
+                <a href=\"";
+        // line 39
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
-        echo "\">Immobilette</a>
-        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-            <span class=\"navbar-toggler-icon\"></span>
-        </button>
-        <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
-            <ul class=\"navbar-nav mr-auto\">
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Nos locations<span class=\"sr-only\">(current)</span></a>
-                </li>
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Qui sommes-nous ?<span class=\"sr-only\">(current)</span></a>
-                </li>
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Contact<span class=\"sr-only\">(current)</span></a>
-                </li>
-            </ul>
-            <div class=\"navbar-item-custom\">
+        echo "\"><i class=\"bi bi-house\" style=\"font-size: 1.5em\"></i></a>
+            </div>
+            <div class=\"col-6\">
+                <p class=\"font-weight-bolder fs-4 title\">POO Immo</p>
+            </div>
+            <div class=\"col\">
                 ";
-        // line 54
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 54, $this->source); })()), "user", [], "any", false, false, false, 54)) {
-            // line 55
-            echo "                    <a class=\"mr-3\" href=\"";
+        // line 45
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 45, $this->source); })()), "user", [], "any", false, false, false, 45)) {
+            // line 46
+            echo "                    <a class=\"\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_account");
-            echo "\">Mon compte <small>(";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 55, $this->source); })()), "user", [], "any", false, false, false, 55), "surname", [], "any", false, false, false, 55), "html", null, true);
-            echo ")</small></a><a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\">Deconnexion</a>
+            echo "\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i> <small>(";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 46, $this->source); })()), "user", [], "any", false, false, false, 46), "surname", [], "any", false, false, false, 46), "html", null, true);
+            echo ")</small></a>
                 ";
         } else {
-            // line 57
-            echo "                    <a class=\"mr-3\" href=\"";
+            // line 48
+            echo "                    <a class=\"\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\">Connexion</a> <a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
-            echo "\">Inscription</a>
+            echo "\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i><p class=\"connect\">Connexion</p></a>
                 ";
         }
-        // line 59
+        // line 50
         echo "            </div>
         </div>
     </nav>
 </header>
-
 <main role=\"main\">
     ";
-        // line 65
-        if (        $this->hasBlock("carousel", $context, $blocks)) {
-            // line 66
-            echo "    <div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">
-        <ol class=\"carousel-indicators\">
-            <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
-        </ol>
-        <div class=\"carousel-inner\">
-            <div class=\"carousel-item active\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption text-left\">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class=\"carousel-item\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption\">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class=\"carousel-item\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption text-right\">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Browse gallery</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class=\"carousel-control-prev\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">
-            <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>
-            <span class=\"sr-only\">Previous</span>
-        </a>
-        <a class=\"carousel-control-next\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">
-            <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>
-            <span class=\"sr-only\">Next</span>
-        </a>
-    </div>
-    ";
-        }
-        // line 114
-        echo "
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class=\"container marketing ";
-        // line 119
-        if ( !        $this->hasBlock("carousel", $context, $blocks)) {
-            echo "mt-5";
-        }
-        echo "\">
-        <?php phpinfo(); ?>
-        ";
-        // line 121
+        // line 55
         $this->displayBlock('content', $context, $blocks);
-        // line 123
-        echo "
-    </div><!-- /.container -->
-
-    <!-- FOOTER -->
-    <footer class=\"footer-custom\">
-        <p>
-            &copy; Immobilette </br>
-            <small>La mobilette de l'immobilier </br>
-                <a href=\"#\">Privacy</a> &middot; <a href=\"#\">Terms</a></small>
-        </p>
+        // line 57
+        echo "    <footer>
     </footer>
 </main>
 <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
 <script src=\"";
-        // line 136
+        // line 61
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/bootstrap.bundle.js"), "html", null, true);
         echo "\"></script>
 </body>
@@ -254,7 +165,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 
     }
 
-    // line 121
+    // line 55
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -264,8 +175,8 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
-        // line 122
-        echo "        ";
+        // line 56
+        echo "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -286,7 +197,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 
     public function getDebugInfo()
     {
-        return array (  268 => 122,  258 => 121,  239 => 9,  226 => 136,  211 => 123,  209 => 121,  202 => 119,  195 => 114,  145 => 66,  143 => 65,  135 => 59,  127 => 57,  117 => 55,  115 => 54,  95 => 37,  87 => 32,  65 => 13,  61 => 12,  55 => 9,  45 => 1,);
+        return array (  179 => 56,  169 => 55,  150 => 9,  137 => 61,  131 => 57,  129 => 55,  122 => 50,  116 => 48,  108 => 46,  106 => 45,  97 => 39,  87 => 32,  65 => 13,  61 => 12,  55 => 9,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -304,7 +215,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
     <!-- Bootstrap core CSS -->
     <link href=\"{{ asset('assets/css/bootstrap.min.css')}}\" rel=\"stylesheet\">
     <link rel=\"stylesheet\" href=\"{{ asset('assets/css/immobilette.css') }}\">
-
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css\">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -326,103 +237,28 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 </head>
 <body>
 <header>
-    <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">
-        <a class=\"navbar-brand\" href=\"{{ path('app_home') }}\">Immobilette</a>
-        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-            <span class=\"navbar-toggler-icon\"></span>
-        </button>
-        <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
-            <ul class=\"navbar-nav mr-auto\">
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Nos locations<span class=\"sr-only\">(current)</span></a>
-                </li>
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Qui sommes-nous ?<span class=\"sr-only\">(current)</span></a>
-                </li>
-                <li class=\"nav-item active\">
-                    <a class=\"nav-link\" href=\"#\">Contact<span class=\"sr-only\">(current)</span></a>
-                </li>
-            </ul>
-            <div class=\"navbar-item-custom\">
+    <nav class=\"container text-center mt-3 mb-3\">
+        <div class=\"row align-items-center justify-content-center navigationbar\">
+            <div class=\"col mx-auto\">
+                <a href=\"{{ path('app_home') }}\"><i class=\"bi bi-house\" style=\"font-size: 1.5em\"></i></a>
+            </div>
+            <div class=\"col-6\">
+                <p class=\"font-weight-bolder fs-4 title\">POO Immo</p>
+            </div>
+            <div class=\"col\">
                 {% if app.user %}
-                    <a class=\"mr-3\" href=\"{{ path('app_account') }}\">Mon compte <small>({{ app.user.surname }})</small></a><a href=\"{{ path('app_logout') }}\">Deconnexion</a>
+                    <a class=\"\" href=\"{{ path('app_account') }}\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i> <small>({{ app.user.surname }})</small></a>
                 {% else %}
-                    <a class=\"mr-3\" href=\"{{ path('app_login') }}\">Connexion</a> <a href=\"{{ path('app_register') }}\">Inscription</a>
+                    <a class=\"\" href=\"{{ path('app_login') }}\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i><p class=\"connect\">Connexion</p></a>
                 {% endif %}
             </div>
         </div>
     </nav>
 </header>
-
 <main role=\"main\">
-    {% if block('carousel') is defined %}
-    <div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">
-        <ol class=\"carousel-indicators\">
-            <li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"1\"></li>
-            <li data-target=\"#myCarousel\" data-slide-to=\"2\"></li>
-        </ol>
-        <div class=\"carousel-inner\">
-            <div class=\"carousel-item active\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption text-left\">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class=\"carousel-item\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption\">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class=\"carousel-item\">
-                <svg class=\"bd-placeholder-img\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\"><rect width=\"100%\" height=\"100%\" fill=\"#777\"/></svg>
-                <div class=\"container\">
-                    <div class=\"carousel-caption text-right\">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Browse gallery</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class=\"carousel-control-prev\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">
-            <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>
-            <span class=\"sr-only\">Previous</span>
-        </a>
-        <a class=\"carousel-control-next\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">
-            <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>
-            <span class=\"sr-only\">Next</span>
-        </a>
-    </div>
-    {% endif %}
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class=\"container marketing {% if block('carousel') is not defined %}mt-5{% endif %}\">
-        <?php phpinfo(); ?>
-        {% block content %}
-        {% endblock %}
-
-    </div><!-- /.container -->
-
-    <!-- FOOTER -->
-    <footer class=\"footer-custom\">
-        <p>
-            &copy; Immobilette </br>
-            <small>La mobilette de l'immobilier </br>
-                <a href=\"#\">Privacy</a> &middot; <a href=\"#\">Terms</a></small>
-        </p>
+    {% block content %}
+    {% endblock %}
+    <footer>
     </footer>
 </main>
 <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
