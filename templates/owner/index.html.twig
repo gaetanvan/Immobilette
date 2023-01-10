@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire proprietaire
+{% endblock %}
+
+
+{% block content %}
+	<link rel="stylesheet" href="{{ asset('assets/css/owner.css') }}">
+	<h1>Formulaire proprietaire</h1>
+	{# {{ form(form)}} #}
+	<form method="post" class="w-75 m-auto text-center">
+		<label for="inputEmail">Type de biens</label>
+		<input type="text" value="" name="type" id="inputType" class="form-control" required autofocus>
+
+		<label for="inputRoom">Pièces</label>
+		<input type="number" value="" name="room" id="inputRoom" class="form-control" required autofocus>
+
+		<label for="inputAera">Surface</label>
+		<input type="number" value="" name="aera" id="inputAera" class="form-control" required autofocus>
+
+		<label for="inputPrice">Prix</label>
+		<input type="number" value="" name="price" id="inputPrice" class="form-control" required autofocus>
+
+		<label for="inputCity">Ville</label>
+		<input type="text" value="" name="city" id="inputCity" class="form-control" required autofocus>
+
+		<label for="inputImage">Photos</label>
+		<input type="text" value="" name="Image" id="inputImage" class="form-control" required autofocus>
+
+		<button class="btn mt-5" type="submit">Valider</button>
+
+	</form>
+{% endblock %}

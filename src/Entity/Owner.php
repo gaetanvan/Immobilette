@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\Repository\OwnerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\OwnerInterface;
 
 #[ORM\Entity(repositoryClass: OwnerRepository::class)]
-class Owner
+class Owner 
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -8,6 +8,7 @@ return [
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin']], [], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'phpinfo' => [[], ['_controller' => 'App\\Controller\\HomeController::phpinfoAction'], [], [['text', '/phpinfo']], [], [], []],
+    'app_formulaire' => [[], ['_controller' => 'App\\Controller\\OwnerController::index'], [], [['text', '/formulaire']], [], [], []],
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegisterController::index'], [], [['text', '/register']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
