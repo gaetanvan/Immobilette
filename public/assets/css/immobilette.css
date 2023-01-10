@@ -9,3 +9,44 @@
     padding-top: 25px;
 
 }
+.connect {
+    font-size: 12px;
+    margin-top: -8px;
+    margin-bottom: 0;
+}
+p {
+    margin-bottom: 0;
+}
+.title {
+    font-family: Inter;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navigationbar, .navigationbar a {
+    color: #03045E;
+}
+.searchBar {
+    box-sizing: border-box;
+    border: 1px solid #03045E;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.containerSearch {
+    margin: 1em 2em;
+}
+.homeCard{
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: 0.1rem solid #03055E;
+}
+.homeImg{
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+.containerCard {
+    margin: 2rem 0;
+}
+.bold{
+    font-weight: bold;
+}
