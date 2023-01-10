@@ -18,7 +18,7 @@ p {
     margin-bottom: 0;
 }
 .title {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-weight: bold;
     font-size: 20px;
 }
@@ -49,4 +49,27 @@ p {
 }
 .bold{
     font-weight: bold;
+}
+hr {
+    border: 1px solid #03095E;
+}
+.darkblue {
+    color: #03095E;
+}
+.backgroundDarkblue {
+    background-color: #03095E;
+}
+.btnRadius{
+    border-radius: 3.2rem;
+}
+.fw-600{
+    font-weight: 600;
+}
+.smallFont {
+    font-size: 0.8rem;
+}
+.registerForm button {
+    background-color: #03095E;
+    border-color: #03095E;
+    border-radius: 1.25rem;
 }

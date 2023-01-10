@@ -36,6 +36,7 @@ class RegisterType extends AbstractType
             ])
             ->add('birthDate',BirthdayType::class, [
             'label' => 'Date de naissance',
+            'widget' => 'single_text',
             'placeholder' => [
                 'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
             ],

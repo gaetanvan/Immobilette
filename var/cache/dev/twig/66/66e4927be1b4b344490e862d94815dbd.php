@@ -65,6 +65,9 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/immobilette.css"), "html", null, true);
         echo "\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css\">
+    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap\" rel=\"stylesheet\">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -83,7 +86,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
     </style>
     <!-- Custom styles for this template -->
     <link href=\"";
-        // line 32
+        // line 35
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/carousel.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 </head>
@@ -93,7 +96,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
         <div class=\"row align-items-center justify-content-center navigationbar\">
             <div class=\"col mx-auto\">
                 <a href=\"";
-        // line 39
+        // line 42
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         echo "\"><i class=\"bi bi-house\" style=\"font-size: 1.5em\"></i></a>
             </div>
@@ -102,38 +105,38 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
             </div>
             <div class=\"col\">
                 ";
-        // line 45
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 45, $this->source); })()), "user", [], "any", false, false, false, 45)) {
-            // line 46
+        // line 48
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 48, $this->source); })()), "user", [], "any", false, false, false, 48)) {
+            // line 49
             echo "                    <a class=\"\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_account");
             echo "\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i> <small>(";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 46, $this->source); })()), "user", [], "any", false, false, false, 46), "surname", [], "any", false, false, false, 46), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 49, $this->source); })()), "user", [], "any", false, false, false, 49), "surname", [], "any", false, false, false, 49), "html", null, true);
             echo ")</small></a>
                 ";
         } else {
-            // line 48
+            // line 51
             echo "                    <a class=\"\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\"><i class=\"bi bi-person-fill\" style=\"font-size: 1.5em\"></i><p class=\"connect\">Connexion</p></a>
                 ";
         }
-        // line 50
+        // line 53
         echo "            </div>
         </div>
     </nav>
 </header>
 <main role=\"main\">
     ";
-        // line 55
+        // line 58
         $this->displayBlock('content', $context, $blocks);
-        // line 57
+        // line 60
         echo "    <footer>
     </footer>
 </main>
 <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
 <script src=\"";
-        // line 61
+        // line 64
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/bootstrap.bundle.js"), "html", null, true);
         echo "\"></script>
 </body>
@@ -165,7 +168,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 
     }
 
-    // line 55
+    // line 58
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -175,7 +178,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
-        // line 56
+        // line 59
         echo "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -197,7 +200,7 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
 
     public function getDebugInfo()
     {
-        return array (  179 => 56,  169 => 55,  150 => 9,  137 => 61,  131 => 57,  129 => 55,  122 => 50,  116 => 48,  108 => 46,  106 => 45,  97 => 39,  87 => 32,  65 => 13,  61 => 12,  55 => 9,  45 => 1,);
+        return array (  182 => 59,  172 => 58,  153 => 9,  140 => 64,  134 => 60,  132 => 58,  125 => 53,  119 => 51,  111 => 49,  109 => 48,  100 => 42,  90 => 35,  65 => 13,  61 => 12,  55 => 9,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -216,6 +219,9 @@ class __TwigTemplate_68748fe507ed7c67c8f12c453749ce23 extends Template
     <link href=\"{{ asset('assets/css/bootstrap.min.css')}}\" rel=\"stylesheet\">
     <link rel=\"stylesheet\" href=\"{{ asset('assets/css/immobilette.css') }}\">
     <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css\">
+    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap\" rel=\"stylesheet\">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
