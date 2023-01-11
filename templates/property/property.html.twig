@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <hr>
+    <div class="container">
+        <div class="text-center">
+            <img src="/uploads/{{ property.file }}" class="rounded img-fluid" alt="{{ property.name }}">
+        </div>
+        <p class="bold">{{ property.name }}</p>
+        <p>{{ property.city }}</p>
+        <div class="row mt-4">
+            <p class="col-8">{{ property.details }}</p>
+            <div class="col-4">
+                <p>{{ property.price / 100 }} €</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

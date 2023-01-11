@@ -68,25 +68,9 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
         echo "    <div class=\"form-outline containerSearch\">
         <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
     </div>
-    <div class=\"container containerCard\">
-        <div class=\"card m-auto homeCard\" style=\"width: 23rem;\">
-            <img src=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/home.jpg"), "html", null, true);
-        echo "\" class=\"card-img-top homeImg\" alt=\"...\">
-            <div class=\"card-body row align-items-center\">
-                <div class=\"col-8\">
-                    <p class=\"bold card-text\">Appartement 3 piece</p>
-                    <p class=\"card-text\">Grenoble Centre</p>
-                    <p class=\"bold card-text\">890 €/mois</p>
-                </div>
-                <div class=\"col-4\">
-                    <p class=\"card-text\">90m²</p>
-                </div>
-            </div>
-        </div>
-    </div>
 ";
+        // line 6
+        $this->loadTemplate("home/card.html.twig", "home/index.html.twig", 6)->display($context);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -107,7 +91,7 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
 
     public function getDebugInfo()
     {
-        return array (  75 => 8,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  73 => 6,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -117,21 +101,7 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
     <div class=\"form-outline containerSearch\">
         <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
     </div>
-    <div class=\"container containerCard\">
-        <div class=\"card m-auto homeCard\" style=\"width: 23rem;\">
-            <img src=\"{{ asset('assets/img/home.jpg') }}\" class=\"card-img-top homeImg\" alt=\"...\">
-            <div class=\"card-body row align-items-center\">
-                <div class=\"col-8\">
-                    <p class=\"bold card-text\">Appartement 3 piece</p>
-                    <p class=\"card-text\">Grenoble Centre</p>
-                    <p class=\"bold card-text\">890 €/mois</p>
-                </div>
-                <div class=\"col-4\">
-                    <p class=\"card-text\">90m²</p>
-                </div>
-            </div>
-        </div>
-    </div>
+{% include 'home/card.html.twig' %}
 {% endblock %}
 ", "home/index.html.twig", "C:\\laragon\\www\\Immobilette\\templates\\home\\index.html.twig");
     }
