@@ -372,3 +372,5 @@ cecbf9,127.0.0.1,POST,https://127.0.0.1:8001/announcement,1673437988,,500
 e1cc13,127.0.0.1,POST,https://127.0.0.1:8001/announcement,1673444372,,500
 df7312,127.0.0.1,GET,https://127.0.0.1:8001/announcement,1673444563,f66c66,500
 f66c66,127.0.0.1,POST,https://127.0.0.1:8001/announcement,1673444563,,500
+d390c6,127.0.0.1,GET,https://127.0.0.1:8001/announcement,1673446215,f8492b,500
+f8492b,127.0.0.1,POST,https://127.0.0.1:8001/announcement,1673446215,,500
