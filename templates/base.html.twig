@@ -15,6 +15,7 @@
 		<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
 		<link rel="stylesheet" href="{{ asset('assets/css/immobilette.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/announcement.css') }}">
 
 
 		<style>
@@ -131,7 +132,7 @@
 			{% endif %}
 
 			<!-- Marketing messaging and featurettes
-						    ================================================== -->
+															    ================================================== -->
 			<!-- Wrap the rest of the page in another container to center all the content. -->
 
 			<div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %}">
@@ -141,16 +142,18 @@
 			</div>
 			<!-- /.container -->
 
-			<!-- FOOTER -->
-			<footer class="footer-custom">
-				<p>&copy; Immobilette
-				</p>
-			</br>
-			<small>La mobilette de l'immobilier
-			</br>
-			<a href="#">Privacy</a>
-			&middot;
-			<a href="#">Terms</a>
-		</small>
+		<!-- FOOTER -->
+			{# <footer class="footer-custom">
+										<p>&copy; Immobilette
+										</p>
+									</br>
+									<small>La mobilette de l'immobilier
+									</br>
+									<a href="#">Privacy</a>
+									&middot;
+									<a href="#">Terms</a>
+								</small> #}
+			{# </p></footer> #}
+		</body>
 	</body>
-</html></p></footer></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script></body></html>
+</html></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script></body></html>

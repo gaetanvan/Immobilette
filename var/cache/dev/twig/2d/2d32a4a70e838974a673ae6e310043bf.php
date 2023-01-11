@@ -557,6 +557,6 @@ class __TwigTemplate_e7789dc5c9e4fa8227746efeefa1dca8 extends Template
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Collector/http_client.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\Immobilette\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\http_client.html.twig");
+", "@WebProfiler/Collector/http_client.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\ProjetImmo\\Immobilette\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\http_client.html.twig");
     }
 }

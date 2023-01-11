@@ -644,6 +644,6 @@ class __TwigTemplate_fa039e4f3ea5fd8300967444db4d69c0 extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@WebProfiler/Collector/notifier.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\Immobilette\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\notifier.html.twig");
+", "@WebProfiler/Collector/notifier.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\ProjetImmo\\Immobilette\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\notifier.html.twig");
     }
 }

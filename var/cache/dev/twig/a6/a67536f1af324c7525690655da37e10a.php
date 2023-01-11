@@ -67,6 +67,10 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
         // line 17
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/immobilette.css"), "html", null, true);
         echo "\">
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 18
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/announcement.css"), "html", null, true);
+        echo "\">
 
 
 \t\t<style>
@@ -87,7 +91,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t</style>
 \t\t<!-- Custom styles for this template -->
 \t\t<link href=\"";
-        // line 37
+        // line 38
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/css/carousel.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 \t</head>
@@ -95,7 +99,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t<header>
 \t\t\t<nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">
 \t\t\t\t<a class=\"navbar-brand\" href=\"";
-        // line 42
+        // line 43
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         echo "\">Immobilette</a>
 \t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -118,34 +122,34 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t\t\t\t</ul>
 \t\t\t\t\t<div class=\"navbar-item-custom\">
 \t\t\t\t\t\t";
-        // line 62
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "user", [], "any", false, false, false, 62)) {
-            // line 63
+        // line 63
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "user", [], "any", false, false, false, 63)) {
+            // line 64
             echo "\t\t\t\t\t\t\t<a class=\"mr-3\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_account");
             echo "\">Mon compte
 \t\t\t\t\t\t\t\t<small>(";
-            // line 64
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 64, $this->source); })()), "user", [], "any", false, false, false, 64), "surname", [], "any", false, false, false, 64), "html", null, true);
+            // line 65
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 65, $this->source); })()), "user", [], "any", false, false, false, 65), "surname", [], "any", false, false, false, 65), "html", null, true);
             echo ")</small>
 \t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<a href=\"";
-            // line 66
+            // line 67
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             echo "\">Deconnexion</a>
 \t\t\t\t\t\t";
         } else {
-            // line 68
+            // line 69
             echo "\t\t\t\t\t\t\t<a class=\"mr-3\" href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">Connexion</a>
 \t\t\t\t\t\t\t<a href=\"";
-            // line 69
+            // line 70
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             echo "\">Inscription</a>
 \t\t\t\t\t\t";
         }
-        // line 71
+        // line 72
         echo "\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</nav>
@@ -153,9 +157,9 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 
 \t\t<main role=\"main\">
 \t\t\t";
-        // line 77
+        // line 78
         if (        $this->hasBlock("carousel", $context, $blocks)) {
-            // line 78
+            // line 79
             echo "\t\t\t\t<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">
 \t\t\t\t\t<ol class=\"carousel-indicators\">
 \t\t\t\t\t\t<li data-target=\"#myCarousel\" data-slide-to=\"0\" class=\"active\"></li>
@@ -211,41 +215,36 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t\t\t</div>
 \t\t\t";
         }
-        // line 132
+        // line 133
         echo "
 \t\t\t<!-- Marketing messaging and featurettes
-\t\t\t\t\t\t    ================================================== -->
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    ================================================== -->
 \t\t\t<!-- Wrap the rest of the page in another container to center all the content. -->
 
 \t\t\t<div class=\"container marketing ";
-        // line 137
+        // line 138
         if ( !        $this->hasBlock("carousel", $context, $blocks)) {
             echo "mt-5";
         }
         echo "\">
 \t\t\t\t<?php phpinfo(); ?>
 \t\t\t\t";
-        // line 139
-        $this->displayBlock('content', $context, $blocks);
         // line 140
+        $this->displayBlock('content', $context, $blocks);
+        // line 141
         echo "
 \t\t\t</div>
 \t\t\t<!-- /.container -->
 
-\t\t\t<!-- FOOTER -->
-\t\t\t<footer class=\"footer-custom\">
-\t\t\t\t<p>&copy; Immobilette
-\t\t\t\t</p>
-\t\t\t</br>
-\t\t\t<small>La mobilette de l'immobilier
-\t\t\t</br>
-\t\t\t<a href=\"#\">Privacy</a>
-\t\t\t&middot;
-\t\t\t<a href=\"#\">Terms</a>
-\t\t</small>
-\t</body>
-</html></p></footer></main><script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script><script src=\"";
+\t\t<!-- FOOTER -->
+\t\t\t";
         // line 156
+        echo "\t\t\t";
+        // line 157
+        echo "\t\t</body>
+\t</body>
+</html></main><script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script><script src=\"";
+        // line 159
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/bootstrap.bundle.js"), "html", null, true);
         echo "\"></script></body></html>
 ";
@@ -277,7 +276,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 
     }
 
-    // line 139
+    // line 140
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -307,7 +306,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 
     public function getDebugInfo()
     {
-        return array (  281 => 139,  261 => 10,  249 => 156,  231 => 140,  229 => 139,  222 => 137,  215 => 132,  159 => 78,  157 => 77,  149 => 71,  144 => 69,  139 => 68,  134 => 66,  129 => 64,  124 => 63,  122 => 62,  99 => 42,  91 => 37,  68 => 17,  63 => 15,  58 => 12,  56 => 10,  45 => 1,);
+        return array (  280 => 140,  260 => 10,  248 => 159,  244 => 157,  242 => 156,  235 => 141,  233 => 140,  226 => 138,  219 => 133,  163 => 79,  161 => 78,  153 => 72,  148 => 70,  143 => 69,  138 => 67,  133 => 65,  128 => 64,  126 => 63,  103 => 43,  95 => 38,  72 => 18,  68 => 17,  63 => 15,  58 => 12,  56 => 10,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -329,6 +328,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t<link href=\"{{ asset('assets/css/bootstrap.min.css')}}\" rel=\"stylesheet\">
 
 \t\t<link rel=\"stylesheet\" href=\"{{ asset('assets/css/immobilette.css') }}\">
+\t\t<link rel=\"stylesheet\" href=\"{{ asset('assets/css/announcement.css') }}\">
 
 
 \t\t<style>
@@ -445,7 +445,7 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t\t{% endif %}
 
 \t\t\t<!-- Marketing messaging and featurettes
-\t\t\t\t\t\t    ================================================== -->
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    ================================================== -->
 \t\t\t<!-- Wrap the rest of the page in another container to center all the content. -->
 
 \t\t\t<div class=\"container marketing {% if block('carousel') is not defined %}mt-5{% endif %}\">
@@ -455,19 +455,21 @@ class __TwigTemplate_cf35c53c432527c191c655fc0254366e extends Template
 \t\t\t</div>
 \t\t\t<!-- /.container -->
 
-\t\t\t<!-- FOOTER -->
-\t\t\t<footer class=\"footer-custom\">
-\t\t\t\t<p>&copy; Immobilette
-\t\t\t\t</p>
-\t\t\t</br>
-\t\t\t<small>La mobilette de l'immobilier
-\t\t\t</br>
-\t\t\t<a href=\"#\">Privacy</a>
-\t\t\t&middot;
-\t\t\t<a href=\"#\">Terms</a>
-\t\t</small>
+\t\t<!-- FOOTER -->
+\t\t\t{# <footer class=\"footer-custom\">
+\t\t\t\t\t\t\t\t\t\t<p>&copy; Immobilette
+\t\t\t\t\t\t\t\t\t\t</p>
+\t\t\t\t\t\t\t\t\t</br>
+\t\t\t\t\t\t\t\t\t<small>La mobilette de l'immobilier
+\t\t\t\t\t\t\t\t\t</br>
+\t\t\t\t\t\t\t\t\t<a href=\"#\">Privacy</a>
+\t\t\t\t\t\t\t\t\t&middot;
+\t\t\t\t\t\t\t\t\t<a href=\"#\">Terms</a>
+\t\t\t\t\t\t\t\t</small> #}
+\t\t\t{# </p></footer> #}
+\t\t</body>
 \t</body>
-</html></p></footer></main><script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script><script src=\"{{ asset('assets/js/bootstrap.bundle.js') }}\"></script></body></html>
-", "base.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\Immobilette\\templates\\base.html.twig");
+</html></main><script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script><script src=\"{{ asset('assets/js/bootstrap.bundle.js') }}\"></script></body></html>
+", "base.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\ProjetImmo\\Immobilette\\templates\\base.html.twig");
     }
 }
