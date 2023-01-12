@@ -3,9 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Announcement;
-use App\Entity\TypeOf;
-
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,14 +22,17 @@ class AnnouncementType extends AbstractType
         $builder
         
         ->add('name', ChoiceType::class,[
-            'mapped' => false,
+            
             'choices' => [
                 'Vente' =>'Vente',
-                'Location' =>'Location',   
-            ]
+                'Location' =>'Location',
+                   
+            ],
+            'by_reference' => false
         ])
-        ->add('typeOf',ChoiceType::class,[
-            'mapped' => false,
+        
+        ->add('type',ChoiceType::class,[
+            
             'label' => 'type de biens',
             'choices' => [
                 'Appartement' =>'appartement',
@@ -44,18 +44,18 @@ class AnnouncementType extends AbstractType
         ])
         
         ->add('aera',NumberType::class,[
-            'mapped' => false,
+            
             'label' =>'surface en m²',
         ])
         
         ->add('city', TextType::class,[
-            'mapped' => false,
+            
             'label' => 'ville',
             
         ])
         
         ->add('price', NumberType::class,[
-            'mapped' => false,
+            
             'label' => 'prix',
         ])
         ->add('room', ChoiceType::class,[
@@ -68,26 +68,28 @@ class AnnouncementType extends AbstractType
                 4 => 4,
                 '5+' => 5,
             ],
-            'mapped' => false,
+            
             'label' => 'nombre de pièces',
         ])
 
         ->add('description', TextareaType::class,[
-            'mapped' => false,
+            
             'label' =>'description',
         ])
         ->add('picture', FileType::class, array(
             'label' => 'Image (JPEG or PNG)',
-            'mapped' => false,
+            // 'mapped' => false,
 
 
         ))
         
     
         ->add('submit', SubmitType::class, [
-            'label' => "S'inscrire",
+            'label' => "valider",
+            
         ]);
-        ;
+
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void
