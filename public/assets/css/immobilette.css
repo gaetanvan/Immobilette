@@ -50,7 +50,7 @@ p {
 .bold{
     font-weight: bold;
 }
-hr {
+hr, .borderblue {
     border: 1px solid #03095E;
 }
 .darkblue {

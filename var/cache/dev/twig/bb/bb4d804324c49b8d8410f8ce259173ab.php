@@ -65,11 +65,16 @@ class __TwigTemplate_cb7741fdd539ba25b29f3152c973bbe2 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 3
-        echo "    <h1>Inscription</h1>
-        ";
-        // line 4
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 4, $this->source); })()), 'form');
+        echo "    <hr>
+    <div class=\"row text-center mt-5 darkblue\">
+        <div class=\"col mx-5 registerForm\">
+            <h1>Inscription</h1>
+            ";
+        // line 7
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 7, $this->source); })()), 'form');
         echo "
+        </div>
+    </div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -91,15 +96,20 @@ class __TwigTemplate_cb7741fdd539ba25b29f3152c973bbe2 extends Template
 
     public function getDebugInfo()
     {
-        return array (  71 => 4,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  74 => 7,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 {% block content %}
-    <h1>Inscription</h1>
-        {{ form(form) }}
-{% endblock %}", "register/index.html.twig", "C:\\Users\\33699\\OneDrive\\Bureau\\symfony\\Immobilette\\templates\\register\\index.html.twig");
+    <hr>
+    <div class=\"row text-center mt-5 darkblue\">
+        <div class=\"col mx-5 registerForm\">
+            <h1>Inscription</h1>
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}", "register/index.html.twig", "H:\\laragon\\www\\Immobilette\\templates\\register\\index.html.twig");
     }
 }

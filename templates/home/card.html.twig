@@ -1,8 +1,9 @@
 {% block card %}
+    <div class="d-flex flex-column">
     {% for property in properties %}
-<a href="/property/{{ property.slug }}">
+<a class="align-self-center" href="/property/{{ property.slug }}">
     <div class="container containerCard">
-        <div class="card m-auto homeCard" style="width: 23rem;">
+        <div class="card m-auto homeCard darkblue" style="width: 90%;">
             <img src="uploads/{{ property.file }}" class="card-img-top homeImg" alt="...">
             <div class="card-body row align-items-center">
                 <div class="col-8">
@@ -18,4 +19,5 @@
     </div>
 </a>
     {% endfor %}
+    <div>
 {% endblock %}

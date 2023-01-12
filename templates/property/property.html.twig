@@ -2,16 +2,20 @@
 {% block content %}
     <hr>
     <div class="container">
-        <div class="text-center">
-            <img src="/uploads/{{ property.file }}" class="rounded img-fluid" alt="{{ property.name }}">
+        <div class="text-center mb-3">
+            <img src="/uploads/{{ property.file }}" class="rounded img-fluid borderblue" alt="{{ property.name }}">
         </div>
-        <p class="bold">{{ property.name }}</p>
-        <p>{{ property.city }}</p>
+        <p class="bold ml-4">{{ property.name }}</p>
+        <p class="ml-4">{{ property.city }}</p>
         <div class="row mt-4">
-            <p class="col-8">{{ property.details }}</p>
-            <div class="col-4">
-                <p>{{ property.price / 100 }} €</p>
+            <p class="col-8 bold">{{ property.details }}</p>
+            <div class="col-4 align-self-center">
+                <p class="text-right bold">{{ property.area }} m²</p>
+                <p class="text-right bold"> {{ property.roomnumber }} pieces</p>
             </div>
+        </div>
+        <div>
+            <p class="mt-5 text-center">{{ property.price / 100 }} €</p>
         </div>
     </div>
 {% endblock %}
