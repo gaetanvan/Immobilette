@@ -60,39 +60,41 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "card"));
 
         // line 2
-        echo "    ";
+        echo "    <div class=\"d-xs-flex flex-xs-column row\">
+    ";
+        // line 3
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["properties"]) || array_key_exists("properties", $context) ? $context["properties"] : (function () { throw new RuntimeError('Variable "properties" does not exist.', 2, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["properties"]) || array_key_exists("properties", $context) ? $context["properties"] : (function () { throw new RuntimeError('Variable "properties" does not exist.', 3, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["property"]) {
-            // line 3
-            echo "<a href=\"/property/";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "slug", [], "any", false, false, false, 3), "html", null, true);
+            // line 4
+            echo "<a class=\"align-self-center col-md-4\" style=\"width: 90%;\" href=\"/property/";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "slug", [], "any", false, false, false, 4), "html", null, true);
             echo "\">
-    <div class=\"container containerCard\">
-        <div class=\"card m-auto homeCard\" style=\"width: 23rem;\">
+    <div class=\"container containerCard nopadding\">
+        <div class=\"card m-auto homeCard darkblue\" style=\"width: 90%;\">
             <img src=\"uploads/";
-            // line 6
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "file", [], "any", false, false, false, 6), "html", null, true);
+            // line 7
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "file", [], "any", false, false, false, 7), "html", null, true);
             echo "\" class=\"card-img-top homeImg\" alt=\"...\">
             <div class=\"card-body row align-items-center\">
                 <div class=\"col-8\">
                     <p class=\"bold card-text\">";
-            // line 9
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "name", [], "any", false, false, false, 9), "html", null, true);
+            // line 10
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "name", [], "any", false, false, false, 10), "html", null, true);
             echo "</p>
                     <p class=\"card-text\">";
-            // line 10
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "city", [], "any", false, false, false, 10), "html", null, true);
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "city", [], "any", false, false, false, 11), "html", null, true);
             echo "</p>
                     <p class=\"bold card-text\">";
-            // line 11
-            echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, $context["property"], "price", [], "any", false, false, false, 11) / 100), "html", null, true);
+            // line 12
+            echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, $context["property"], "price", [], "any", false, false, false, 12) / 100), "html", null, true);
             echo " €</p>
                 </div>
                 <div class=\"col-4\">
                     <p class=\"card-text\">";
-            // line 14
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "area", [], "any", false, false, false, 14), "html", null, true);
+            // line 15
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "area", [], "any", false, false, false, 15), "html", null, true);
             echo "m²</p>
                 </div>
             </div>
@@ -104,6 +106,9 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['property'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 22
+        echo "    <div>
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -119,16 +124,17 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
 
     public function getDebugInfo()
     {
-        return array (  95 => 14,  89 => 11,  85 => 10,  81 => 9,  75 => 6,  68 => 3,  63 => 2,  44 => 1,);
+        return array (  110 => 22,  97 => 15,  91 => 12,  87 => 11,  83 => 10,  77 => 7,  70 => 4,  66 => 3,  63 => 2,  44 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% block card %}
+    <div class=\"d-xs-flex flex-xs-column row\">
     {% for property in properties %}
-<a href=\"/property/{{ property.slug }}\">
-    <div class=\"container containerCard\">
-        <div class=\"card m-auto homeCard\" style=\"width: 23rem;\">
+<a class=\"align-self-center col-md-4\" style=\"width: 90%;\" href=\"/property/{{ property.slug }}\">
+    <div class=\"container containerCard nopadding\">
+        <div class=\"card m-auto homeCard darkblue\" style=\"width: 90%;\">
             <img src=\"uploads/{{ property.file }}\" class=\"card-img-top homeImg\" alt=\"...\">
             <div class=\"card-body row align-items-center\">
                 <div class=\"col-8\">
@@ -144,6 +150,7 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
     </div>
 </a>
     {% endfor %}
+    <div>
 {% endblock %}", "home/card.html.twig", "C:\\laragon\\www\\Immobilette\\templates\\home\\card.html.twig");
     }
 }

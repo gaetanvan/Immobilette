@@ -1,8 +1,8 @@
 {% block card %}
-    <div class="d-flex flex-column">
+    <div class="d-xs-flex flex-xs-column row">
     {% for property in properties %}
-<a class="align-self-center" href="/property/{{ property.slug }}">
-    <div class="container containerCard">
+<a class="align-self-center col-md-4" style="width: 90%;" href="/property/{{ property.slug }}">
+    <div class="container containerCard nopadding">
         <div class="card m-auto homeCard darkblue" style="width: 90%;">
             <img src="uploads/{{ property.file }}" class="card-img-top homeImg" alt="...">
             <div class="card-body row align-items-center">

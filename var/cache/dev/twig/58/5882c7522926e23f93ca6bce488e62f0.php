@@ -68,7 +68,7 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
         echo "    <div class=\"form-outline containerSearch\">
         <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
     </div>
-";
+        ";
         // line 6
         $this->loadTemplate("home/card.html.twig", "home/index.html.twig", 6)->display($context);
         
@@ -101,7 +101,7 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
     <div class=\"form-outline containerSearch\">
         <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
     </div>
-{% include 'home/card.html.twig' %}
+        {% include 'home/card.html.twig' %}
 {% endblock %}
 ", "home/index.html.twig", "C:\\laragon\\www\\Immobilette\\templates\\home\\index.html.twig");
     }

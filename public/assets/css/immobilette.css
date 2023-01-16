@@ -73,3 +73,6 @@ hr, .borderblue {
     border-color: #03095E;
     border-radius: 1.25rem;
 }
+.nopadding{
+    padding: 0;
+}
