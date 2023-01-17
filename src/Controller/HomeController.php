@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Classe\Search;
 use App\Entity\Property;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,12 +21,23 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $properties = $this->entityManager->getRepository(Property::class)->findAll();
 
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $properties = $this->entityManager->getRepository(Property::class)->findWithSearch($search);
+            $search = $form->getData();
+        }
+
         return $this->render('home/index.html.twig', [
-            'properties' => $properties
+            'properties' => $properties,
+            'form' => $form->createView()
         ]);
     }
     #[Route("/phpinfo", name :"phpinfo")]

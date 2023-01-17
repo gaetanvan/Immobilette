@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block content %}
     <div class="form-outline containerSearch">
-        <input type="search" id="form1" class="form-control searchBar" placeholder="" aria-label="Search" />
+        <div class="searchBar">
+            {{ form(form) }}
+        </div>
     </div>
         {% include 'home/card.html.twig' %}
 {% endblock %}

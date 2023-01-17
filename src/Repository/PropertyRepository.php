@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,6 +40,24 @@ class PropertyRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Property[]
+     */
+    public function findWithSearch (Search $search)
+    {
+        $query = $this
+            ->createQueryBuilder('property')
+            ->select('category', 'property')
+            ->join('property.category', 'category');
+
+        if (!empty($search->string)) {
+            $query = $query
+                ->andWhere('property.name LIKE :string')
+                ->setParameter('string', "%{$search->string}%");
+        }
+        return $query->getQuery()->getResult();
+
+    }
 //    /**
 //     * @return Property[] Returns an array of Property objects
 //     */

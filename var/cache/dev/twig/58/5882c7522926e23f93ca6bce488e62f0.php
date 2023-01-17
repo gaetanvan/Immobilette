@@ -66,11 +66,16 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
 
         // line 3
         echo "    <div class=\"form-outline containerSearch\">
-        <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
+        <div class=\"searchBar\">
+            ";
+        // line 5
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 5, $this->source); })()), 'form');
+        echo "
+        </div>
     </div>
         ";
-        // line 6
-        $this->loadTemplate("home/card.html.twig", "home/index.html.twig", 6)->display($context);
+        // line 8
+        $this->loadTemplate("home/card.html.twig", "home/index.html.twig", 8)->display($context);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -91,7 +96,7 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
 
     public function getDebugInfo()
     {
-        return array (  73 => 6,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  78 => 8,  72 => 5,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -99,7 +104,9 @@ class __TwigTemplate_724b524a0919796b9d8413567d52cb5b extends Template
         return new Source("{% extends 'base.html.twig' %}
 {% block content %}
     <div class=\"form-outline containerSearch\">
-        <input type=\"search\" id=\"form1\" class=\"form-control searchBar\" placeholder=\"\" aria-label=\"Search\" />
+        <div class=\"searchBar\">
+            {{ form(form) }}
+        </div>
     </div>
         {% include 'home/card.html.twig' %}
 {% endblock %}

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Classe\Search;
 use App\Entity\Property;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +23,7 @@ class PropertyController extends AbstractController
     public function index(): Response
     {
         $properties = $this->entityManager->getRepository(Property::class)->findAll();
+
 
         return $this->render('home/card.html.twig',[
             'properties' => $properties
