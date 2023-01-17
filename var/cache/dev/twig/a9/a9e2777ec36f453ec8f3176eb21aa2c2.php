@@ -74,8 +74,8 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
         <div class=\"card m-auto homeCard darkblue\" style=\"width: 90%;\">
             <img src=\"uploads/";
             // line 7
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "file", [], "any", false, false, false, 7), "html", null, true);
-            echo "\" class=\"card-img-top homeImg\" alt=\"...\">
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["property"], "files", [], "any", false, false, false, 7), "html", null, true);
+            echo "  \" class=\"card-img-top homeImg\" alt=\"...\">
             <div class=\"card-body row align-items-center\">
                 <div class=\"col-8\">
                     <p class=\"bold card-text\">";
@@ -135,7 +135,7 @@ class __TwigTemplate_a92162ccddaead190e6f83788d8dad1b extends Template
 <a class=\"align-self-center col-md-4\" style=\"width: 90%;\" href=\"/property/{{ property.slug }}\">
     <div class=\"container containerCard nopadding\">
         <div class=\"card m-auto homeCard darkblue\" style=\"width: 90%;\">
-            <img src=\"uploads/{{ property.file }}\" class=\"card-img-top homeImg\" alt=\"...\">
+            <img src=\"uploads/{{ property.files }}  \" class=\"card-img-top homeImg\" alt=\"...\">
             <div class=\"card-body row align-items-center\">
                 <div class=\"col-8\">
                     <p class=\"bold card-text\">{{ property.name }}</p>

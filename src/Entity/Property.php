@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Image;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
@@ -37,13 +39,18 @@ class Property
     private ?string $details = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $file = null;
+    private ?string $files = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
+
+    public function __construct()
+    {
+        $this->image = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,14 +141,14 @@ class Property
         return $this;
     }
 
-    public function getFile(): ?string
+    public function getFiles(): ?string
     {
-        return $this->file;
+        return $this->files;
     }
 
-    public function setFile(string $file): self
+    public function setFiles(string $files): self
     {
-        $this->file = $file;
+        $this->files = $files;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Search;
+use App\Entity\Image;
 use App\Entity\Property;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +24,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
-        $properties = $this->entityManager->getRepository(Property::class)->findAll();
+        $properties = $this->entityManager->getRepository(Property::class)->findAll();;
 
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);

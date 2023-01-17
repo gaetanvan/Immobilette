@@ -34,7 +34,7 @@ class PropertyCrudController extends AbstractCrudController
             AssociationField::new('category'),
             NumberField::new('area'),
             NumberField::new('room_number'),
-            ImageField::new('file')
+            ImageField::new('files')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')
                 ->setUploadedFileNamePattern('[randomhash].[extension]'),

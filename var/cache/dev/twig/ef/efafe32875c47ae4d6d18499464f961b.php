@@ -70,7 +70,7 @@ class __TwigTemplate_d02291d6031558db9c960dc40f601073 extends Template
         <div class=\"text-center mb-3\">
             <img src=\"/uploads/";
         // line 6
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["property"]) || array_key_exists("property", $context) ? $context["property"] : (function () { throw new RuntimeError('Variable "property" does not exist.', 6, $this->source); })()), "file", [], "any", false, false, false, 6), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["property"]) || array_key_exists("property", $context) ? $context["property"] : (function () { throw new RuntimeError('Variable "property" does not exist.', 6, $this->source); })()), "files", [], "any", false, false, false, 6), "html", null, true);
         echo "\" class=\"rounded img-fluid borderblue\" alt=\"";
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["property"]) || array_key_exists("property", $context) ? $context["property"] : (function () { throw new RuntimeError('Variable "property" does not exist.', 6, $this->source); })()), "name", [], "any", false, false, false, 6), "html", null, true);
         echo "\">
@@ -137,7 +137,7 @@ class __TwigTemplate_d02291d6031558db9c960dc40f601073 extends Template
     <hr>
     <div class=\"container\">
         <div class=\"text-center mb-3\">
-            <img src=\"/uploads/{{ property.file }}\" class=\"rounded img-fluid borderblue\" alt=\"{{ property.name }}\">
+            <img src=\"/uploads/{{ property.files }}\" class=\"rounded img-fluid borderblue\" alt=\"{{ property.name }}\">
         </div>
         <p class=\"bold ml-4\">{{ property.name }}</p>
         <p class=\"ml-4\">{{ property.city }}</p>
