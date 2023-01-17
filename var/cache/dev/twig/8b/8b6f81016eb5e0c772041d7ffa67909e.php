@@ -85,17 +85,24 @@ class __TwigTemplate_f2558f29da7ab53c1191f2d29f690174 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        echo "    <h1>Mon compte</h1>
-    Bienvenue ";
-        // line 7
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7), "surname", [], "any", false, false, false, 7), "html", null, true);
-        echo " dans votre compte
-    <hr>
-    <a href=\"";
-        // line 9
+        echo "    <hr>
+    <div class=\"row text-center mt-5 darkblue\">
+        <div class=\"col mx-5 registerForm\">
+            <h1>Mon compte</h1>
+            <p class=\"mb-3\">Bienvenue ";
+        // line 10
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 10, $this->source); })()), "user", [], "any", false, false, false, 10), "surname", [], "any", false, false, false, 10), "html", null, true);
+        echo " dans votre compte</p>
+            <a class=\"mt-4\" href=\"";
+        // line 11
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_account_password");
-        echo "\">Modifier mon mot de passe</a>
-";
+        echo "\">Consulter et modifier mes informations</a>
+        </div>
+    </div>
+    <hr>
+    ";
+        // line 15
+        $this->loadTemplate("home/card.html.twig", "account/index.html.twig", 15)->display($context);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -116,7 +123,7 @@ class __TwigTemplate_f2558f29da7ab53c1191f2d29f690174 extends Template
 
     public function getDebugInfo()
     {
-        return array (  96 => 9,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  105 => 15,  98 => 11,  94 => 10,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -126,10 +133,16 @@ class __TwigTemplate_f2558f29da7ab53c1191f2d29f690174 extends Template
 {% block title %}Votre compte{% endblock %}
 
 {% block content %}
-    <h1>Mon compte</h1>
-    Bienvenue {{ app.user.surname }} dans votre compte
     <hr>
-    <a href=\"{{ path('app_account_password') }}\">Modifier mon mot de passe</a>
+    <div class=\"row text-center mt-5 darkblue\">
+        <div class=\"col mx-5 registerForm\">
+            <h1>Mon compte</h1>
+            <p class=\"mb-3\">Bienvenue {{ app.user.surname }} dans votre compte</p>
+            <a class=\"mt-4\" href=\"{{ path('app_account_password') }}\">Consulter et modifier mes informations</a>
+        </div>
+    </div>
+    <hr>
+    {% include 'home/card.html.twig' %}
 {% endblock %}
 ", "account/index.html.twig", "C:\\laragon\\www\\Immobilette\\templates\\account\\index.html.twig");
     }

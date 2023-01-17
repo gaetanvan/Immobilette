@@ -3,8 +3,14 @@
 {% block title %}Votre compte{% endblock %}
 
 {% block content %}
-    <h1>Mon compte</h1>
-    Bienvenue {{ app.user.surname }} dans votre compte
     <hr>
-    <a href="{{ path('app_account_password') }}">Modifier mon mot de passe</a>
+    <div class="row text-center mt-5 darkblue">
+        <div class="col mx-5 registerForm">
+            <h1>Mon compte</h1>
+            <p class="mb-3">Bienvenue {{ app.user.surname }} dans votre compte</p>
+            <a class="mt-4" href="{{ path('app_account_password') }}">Consulter et modifier mes informations</a>
+        </div>
+    </div>
+    <hr>
+    {% include 'home/card.html.twig' %}
 {% endblock %}

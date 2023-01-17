@@ -1,0 +1,23 @@
+{% block card %}
+    <div class="d-xs-flex flex-xs-column row">
+    {% for property in properties %}
+<a class="align-self-center col-md-4" style="width: 90%;" href="/property/{{ property.slug }}">
+    <div class="container containerCard nopadding">
+        <div class="card m-auto homeCard darkblue" style="width: 90%;">
+            <img src="uploads/{{ property.files }}  " class="card-img-top homeImg" alt="...">
+            <div class="card-body row align-items-center">
+                <div class="col-8">
+                    <p class="bold card-text">{{ property.name }}</p>
+                    <p class="card-text">{{ property.city }}</p>
+                    <p class="bold card-text">{{property.price / 100}} €</p>
+                </div>
+                <div class="col-4">
+                    <p class="card-text">{{ property.area }}m²</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+    {% endfor %}
+    <div>
+{% endblock %}

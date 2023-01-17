@@ -26,7 +26,7 @@ p {
 .navigationbar, .navigationbar a {
     color: #03045E;
 }
-.searchBar {
+.searchBar input {
     box-sizing: border-box;
     border: 1px solid #03045E;
     border-radius: 25px;
@@ -50,7 +50,7 @@ p {
 .bold{
     font-weight: bold;
 }
-hr {
+hr, .borderblue {
     border: 1px solid #03095E;
 }
 .darkblue {
@@ -72,4 +72,7 @@ hr {
     background-color: #03095E;
     border-color: #03095E;
     border-radius: 1.25rem;
+}
+.nopadding{
+    padding: 0;
 }
