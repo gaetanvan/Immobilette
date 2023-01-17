@@ -19,6 +19,7 @@ class City
     private ?string $name = null;
 
     
+    
     public function getId(): ?int
     {
         return $this->id;

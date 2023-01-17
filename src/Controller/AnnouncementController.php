@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\AnnouncementType;
 use App\Entity\Announcement;
+use App\Entity\Picture;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,11 +36,32 @@ class AnnouncementController extends AbstractController
 
 
             $announcement =$form->getData();
+
+            $images = $form->get('picture')->getData();
+
+            foreach( $images as $image ) {
+                // genere un nouveau nom
+                $file = md5(uniqid()) . '.' . $image->guessExtension();
+
+                // copie le fichier dans upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $file
+
+                );
+
+                //stocke image dans BDD (name)
+                $img = new Picture();
+                $img->setName($file);
+                $announcement->addPicture($img);
+            }
             
-            // $entityManager = $this->getDoctrine()->getManager();
-            var_dump($announcement);
-            $this->entityManager->persist($announcement);
-            $this->entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            
+            $entityManager->persist($announcement);
+            $entityManager->flush();
+
+
             
             
             return $this->redirectToRoute('app_announcement');

@@ -8,7 +8,7 @@ form {
 	text-align: center;
 	margin-top: 20px;
 	color: #03095e;
-	font-weight: semi-bold;
+	font-weight: 500;
 }
 
 form > div:first-of-type > label {
@@ -30,10 +30,17 @@ input[type="radio"] {
 	margin-right: 10px;
 }
 
-#announcement_room {
+#property_room_number {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+}
+
+#property_details {
+	height: 200px;
+}
+
+textarea {
 }
 
 .btn {

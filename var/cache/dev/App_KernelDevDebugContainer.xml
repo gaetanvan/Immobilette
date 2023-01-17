@@ -21,6 +21,7 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
+      <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -71,9 +72,14 @@
         <parameter key="path">C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
       </parameter>
+      <parameter key="VichUploaderBundle" type="collection">
+        <parameter key="path">C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle</parameter>
+        <parameter key="namespace">Vich\UploaderBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="images_directory">C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette/public/uploads</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -214,6 +220,7 @@
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
     <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
+      <parameter>@VichUploader/Form/fields.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
       <parameter>bootstrap_4_layout.html.twig</parameter>
     </parameter>
@@ -248,6 +255,9 @@
         </parameter>
       </parameter>
     </parameter>
+    <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
+    <parameter key="vich_uploader.mappings" type="collection"/>
+    <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -333,6 +343,10 @@
         <parameter>easyadmin</parameter>
         <parameter>@EasyAdmin/inspector/data_collector.html.twig</parameter>
       </parameter>
+      <parameter key="Vich\UploaderBundle\DataCollector\MappingCollector" type="collection">
+        <parameter>vich_uploader.mapping_collector</parameter>
+        <parameter>@VichUploader/Collector/mapping_collector.html.twig</parameter>
+      </parameter>
       <parameter key="data_collector.config" type="collection">
         <parameter>config</parameter>
         <parameter>@WebProfiler/Collector/config.html.twig</parameter>
@@ -392,6 +406,14 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\HomeController"/>
       </call>
     </service>
+    <service id="App\Controller\PropertyController" class="App\Controller\PropertyController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\PropertyController"/>
+      </call>
+    </service>
     <service id="App\Controller\RegisterController" class="App\Controller\RegisterController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -407,10 +429,13 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\SecurityController"/>
       </call>
     </service>
-    <service id="App\Form\AnnouncementType" class="App\Form\AnnouncementType" autowire="true" autoconfigure="true">
+    <service id="App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" autoconfigure="true">
+    <service id="App\Form\ImageType" class="App\Form\ImageType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\PropertyType" class="App\Form\PropertyType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" autoconfigure="true">
@@ -420,7 +445,19 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ImageRepository" class="App\Repository\ImageRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\PropertyRepository" class="App\Repository\PropertyRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -1207,10 +1244,12 @@
         <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
+        <argument>Vich\UploaderBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
-        <argument>App\Form\AnnouncementType</argument>
         <argument>App\Form\ChangePasswordType</argument>
+        <argument>App\Form\ImageType</argument>
+        <argument>App\Form\PropertyType</argument>
         <argument>App\Form\RegisterType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1220,6 +1259,8 @@
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType</argument>
+        <argument>Vich\UploaderBundle\Form\Type\VichFileType</argument>
+        <argument>Vich\UploaderBundle\Form\Type\VichImageType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1683,6 +1724,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.ar.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.ar.yaml</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -1699,6 +1741,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.bg.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.bg.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.bg.yaml</argument>
           </argument>
           <argument key="bs" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.bs.xlf</argument>
@@ -1710,12 +1753,14 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.ca.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.ca.yaml</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.cs.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.cs.yaml</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -1731,6 +1776,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.de.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.de.yaml</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
@@ -1743,12 +1789,14 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.en.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.en.yaml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.es.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.es.yaml</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -1772,12 +1820,14 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.fi.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.fi.yaml</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.fr.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.fr.yaml</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -1802,6 +1852,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.hu.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.hu.yaml</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -1819,6 +1870,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.it.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.it.yaml</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
@@ -1836,6 +1888,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.lt.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.lt.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.lt.yaml</argument>
           </argument>
           <argument key="lv" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.lv.xlf</argument>
@@ -1862,6 +1915,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.nl.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.nl.yaml</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -1879,12 +1933,14 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.pl.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.pl.yaml</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.pt.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.pt.yaml</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -1903,6 +1959,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.ru.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.ru.yaml</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
@@ -1915,6 +1972,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.sl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.sl.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.sl.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.sl.yaml</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.sq.xlf</argument>
@@ -1952,12 +2010,14 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.tr.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.tr.yaml</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.uk.php</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.uk.yaml</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -1988,12 +2048,16 @@
           <argument key="sr_RS" type="collection">
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.sr_RS.php</argument>
           </argument>
+          <argument key="vn" type="collection">
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations\messages.vn.yaml</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations</argument>
+          <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2013,6 +2077,7 @@
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\security-core/Resources/translations</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/translations</argument>
+            <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/translations</argument>
             <argument>translations</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -3451,7 +3516,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.ZnmboXZ"/>
+      <argument type="service" id=".service_locator.3GQbGzv"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3976,6 +4041,9 @@
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Inspector\DataCollector"/>
       </call>
       <call method="add">
+        <argument type="service" id="Vich\UploaderBundle\DataCollector\MappingCollector"/>
+      </call>
+      <call method="add">
         <argument type="service" id="data_collector.config"/>
       </call>
     </service>
@@ -4340,7 +4408,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.U9LbWDe"/>
+      <argument type="service" id=".service_locator.iv_zXob"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4515,6 +4583,7 @@
       <call method="setEntityNamespaces">
         <argument type="collection">
           <argument key="App">App\Entity</argument>
+          <argument key="VichUploaderBundle">Vich\UploaderBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCache">
@@ -4567,6 +4636,14 @@
       <argument type="collection">
         <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\src\Entity</argument>
       </argument>
+    </service>
+    <service id="doctrine.orm.default_xml_metadata_driver" class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver">
+      <argument type="collection">
+        <argument key="C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle\config\doctrine">Vich\UploaderBundle\Entity</argument>
+      </argument>
+      <call method="setGlobalBasename">
+        <argument>mapping</argument>
+      </call>
     </service>
     <service id="cache.doctrine.orm.default.metadata" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
     <service id="cache.doctrine.orm.default.result" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
@@ -4961,6 +5038,9 @@
       <call method="addExtension">
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension"/>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="Vich\UploaderBundle\Twig\Extension\UploaderExtension"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="twig.app_variable"/>
@@ -5067,6 +5147,14 @@
       <call method="addPath">
         <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\easycorp\easyadmin-bundle\src/Resources/views</argument>
         <argument>!EasyAdmin</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/templates</argument>
+        <argument>VichUploader</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\vendor\vich\uploader-bundle/templates</argument>
+        <argument>!VichUploader</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette/templates</argument>
@@ -6157,6 +6245,10 @@
             <argument>App\Entity</argument>
             <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
           </argument>
+          <argument type="collection">
+            <argument>Vich\UploaderBundle\Entity</argument>
+            <argument type="service" id="doctrine.orm.default_xml_metadata_driver"/>
+          </argument>
         </argument>
       </argument>
     </service>
@@ -6674,6 +6766,237 @@
       <tag name="assets.package" package="easyadmin.assets.package"/>
       <argument type="service" id="request_stack"/>
     </service>
+    <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter"/>
+    <service id="vich_uploader.adapter.orm" class="Vich\UploaderBundle\Adapter\ORM\DoctrineORMAdapter"/>
+    <service id="vich_uploader.adapter.phpcr" class="Vich\UploaderBundle\Adapter\PHPCR\PHPCRAdapter"/>
+    <service id="vich_uploader.listener.doctrine.base" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.orm" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.orm" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.orm" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.orm" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.storage.file_system" class="Vich\UploaderBundle\Storage\FileSystemStorage">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+    </service>
+    <service id="vich_uploader.file_injector" class="Vich\UploaderBundle\Injector\FileInjector">
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.metadata.file_locator" class="Metadata\Driver\FileLocator">
+      <argument type="collection"/>
+    </service>
+    <service id="vich_uploader.metadata.attribute_reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
+    <service id="vich_uploader.metadata_driver.annotation" class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver">
+      <argument type="service" id="vich_uploader.metadata.reader"/>
+      <argument type="collection">
+        <argument type="service" id="doctrine"/>
+      </argument>
+    </service>
+    <service id="vich_uploader.metadata_driver.xml" class="Vich\UploaderBundle\Metadata\Driver\XmlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.yml" class="Vich\UploaderBundle\Metadata\Driver\YmlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.yaml" class="Vich\UploaderBundle\Metadata\Driver\YamlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.chain" class="Metadata\Driver\DriverChain">
+      <argument type="collection">
+        <argument type="service" id="vich_uploader.metadata_driver.xml"/>
+        <argument type="service">
+          <service class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver">
+            <argument type="service" id="vich_uploader.metadata.reader"/>
+            <argument type="collection">
+              <argument type="service" id="doctrine"/>
+            </argument>
+          </service>
+        </argument>
+        <argument type="service" id="vich_uploader.metadata_driver.yaml"/>
+        <argument type="service" id="vich_uploader.metadata_driver.yml"/>
+      </argument>
+    </service>
+    <service id="vich_uploader.metadata.cache.file_cache" class="Metadata\Cache\FileCache">
+      <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\var\cache\dev/vich_uploader</argument>
+    </service>
+    <service id="vich_uploader.metadata_factory" class="Metadata\MetadataFactory">
+      <argument type="service" id="vich_uploader.metadata_driver.chain"/>
+      <argument>Metadata\ClassHierarchyMetadata</argument>
+      <argument>true</argument>
+      <call method="setCache">
+        <argument type="service" id="vich_uploader.metadata.cache.file_cache" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="vich_uploader.metadata_reader" class="Vich\UploaderBundle\Metadata\MetadataReader">
+      <argument type="service" id="vich_uploader.metadata_factory"/>
+    </service>
+    <service id="Vich\UploaderBundle\Metadata\CacheWarmer" class="Vich\UploaderBundle\Metadata\CacheWarmer">
+      <tag name="kernel.cache_warmer"/>
+      <argument>C:\Users\33699\OneDrive\Bureau\symfony\ProjetImmo\Immobilette\var\cache\dev/vich_uploader</argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+    </service>
+    <service id="vich_uploader.property_mapping_factory" class="Vich\UploaderBundle\Mapping\PropertyMappingFactory">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="collection"/>
+      <argument>_name</argument>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\UniqidNamer" class="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\PropertyNamer" class="Vich\UploaderBundle\Naming\PropertyNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\OrignameNamer" class="Vich\UploaderBundle\Naming\OrignameNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\HashNamer" class="Vich\UploaderBundle\Naming\HashNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\Base64Namer" class="Vich\UploaderBundle\Naming\Base64Namer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" class="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" class="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" public="true">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" class="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" public="true">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Util\Transliterator" class="Vich\UploaderBundle\Util\Transliterator">
+      <argument type="service" id="slugger"/>
+    </service>
+    <service id="vich_uploader.download_handler" class="Vich\UploaderBundle\Handler\DownloadHandler" public="true">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.upload_handler" class="Vich\UploaderBundle\Handler\UploadHandler" public="true">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.file_injector"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="vich_uploader.command.mapping_debug_class" class="Vich\UploaderBundle\Command\MappingDebugClassCommand">
+      <tag name="console.command" command="vich:mapping:debug-class"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <call method="setName">
+        <argument>vich:mapping:debug-class</argument>
+      </call>
+    </service>
+    <service id="vich_uploader.command.mapping_debug" class="Vich\UploaderBundle\Command\MappingDebugCommand">
+      <tag name="console.command" command="vich:mapping:debug"/>
+      <tag name="container.no_preload"/>
+      <argument type="collection"/>
+      <call method="setName">
+        <argument>vich:mapping:debug</argument>
+      </call>
+    </service>
+    <service id="vich_uploader.command.mapping_list_classes" class="Vich\UploaderBundle\Command\MappingListClassesCommand">
+      <tag name="console.command" command="vich:mapping:list-classes"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <call method="setName">
+        <argument>vich:mapping:list-classes</argument>
+      </call>
+    </service>
+    <service id="Vich\UploaderBundle\DataCollector\MappingCollector" class="Vich\UploaderBundle\DataCollector\MappingCollector">
+      <tag name="data_collector" template="@VichUploader/Collector/mapping_collector.html.twig" id="vich_uploader.mapping_collector"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+    </service>
+    <service id="vich_uploader.form.type.file" class="Vich\UploaderBundle\Form\Type\VichFileType" public="true">
+      <tag name="form.type" alias="vich_file"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="vich_uploader.form.type.image" class="Vich\UploaderBundle\Form\Type\VichImageType" public="true">
+      <tag name="form.type" alias="vich_image"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="property_accessor"/>
+      <argument>null</argument>
+    </service>
+    <service id="Vich\UploaderBundle\Templating\Helper\UploaderHelper" class="Vich\UploaderBundle\Templating\Helper\UploaderHelper">
+      <tag name="templating.helper" alias="vich_uploader"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="Vich\UploaderBundle\Twig\Extension\UploaderExtension" class="Vich\UploaderBundle\Twig\Extension\UploaderExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
+    </service>
+    <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AccountController" class="App\Controller\AccountController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AccountController" class="App\Controller\AccountController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AccountController" class="App\Controller\AccountController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6694,22 +7017,33 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PropertyController" class="App\Controller\PropertyController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PropertyController" class="App\Controller\PropertyController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PropertyController" class="App\Controller\PropertyController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegisterController" class="App\Controller\RegisterController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegisterController" class="App\Controller\RegisterController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegisterController" class="App\Controller\RegisterController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AnnouncementType" class="App\Form\AnnouncementType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\AnnouncementType" class="App\Form\AnnouncementType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ImageType" class="App\Form\ImageType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ImageType" class="App\Form\ImageType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PropertyType" class="App\Form\PropertyType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PropertyType" class="App\Form\PropertyType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AnnouncementRepository" class="App\Repository\AnnouncementRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AnnouncementRepository" class="App\Repository\AnnouncementRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CityRepository" class="App\Repository\CityRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ImageRepository" class="App\Repository\ImageRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ImageRepository" class="App\Repository\ImageRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PropertyRepository" class="App\Repository\PropertyRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\PropertyRepository" class="App\Repository\PropertyRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterConfiguratorInterface.0.EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" abstract="true"/>
@@ -7333,11 +7667,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.ZnmboXZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.3GQbGzv" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Form\AnnouncementType" type="service_closure" id="App\Form\AnnouncementType"/>
         <argument key="App\Form\ChangePasswordType" type="service_closure" id="App\Form\ChangePasswordType"/>
+        <argument key="App\Form\ImageType" type="service_closure" id="App\Form\ImageType"/>
+        <argument key="App\Form\PropertyType" type="service_closure" id="App\Form\PropertyType"/>
         <argument key="App\Form\RegisterType" type="service_closure" id="App\Form\RegisterType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType"/>
@@ -7347,6 +7682,8 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service_closure" id="vich_uploader.form.type.file"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service_closure" id="vich_uploader.form.type.image"/>
       </argument>
     </service>
     <service id="messenger.bus.default.middleware.traceable" class="Symfony\Component\Messenger\Middleware\TraceableMiddleware">
@@ -7427,11 +7764,14 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.U9LbWDe" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.iv_zXob" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AnnouncementRepository" type="service_closure" id="App\Repository\AnnouncementRepository"/>
+        <argument key="App\Repository\CategoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
         <argument key="App\Repository\CityRepository" type="service_closure" id="App\Repository\CityRepository"/>
+        <argument key="App\Repository\ImageRepository" type="service_closure" id="App\Repository\ImageRepository"/>
+        <argument key="App\Repository\PropertyRepository" type="service_closure" id="App\Repository\PropertyRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -7805,6 +8145,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mx0UMmY" method="withContext"/>
     </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\PropertyController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PropertyController"/>
+      <argument>App\Controller\PropertyController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
     <service id=".service_locator.mx0UMmY.App\Controller\RegisterController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegisterController"/>
       <argument>App\Controller\RegisterController</argument>
@@ -8031,6 +8377,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
         <argument>App\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_xml_metadata_driver"/>
+        <argument>Vich\UploaderBundle\Entity</argument>
       </call>
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
@@ -8547,7 +8897,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.9SdHXY6"/>
+      <argument type="service" id=".service_locator.SrRIadc"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -8629,6 +8979,9 @@
         <argument key="security:hash-password">security.command.user_password_hash</argument>
         <argument key="make:admin:dashboard">EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminDashboardCommand</argument>
         <argument key="make:admin:crud">EasyCorp\Bundle\EasyAdminBundle\Command\MakeCrudControllerCommand</argument>
+        <argument key="vich:mapping:debug-class">vich_uploader.command.mapping_debug_class</argument>
+        <argument key="vich:mapping:debug">vich_uploader.command.mapping_debug</argument>
+        <argument key="vich:mapping:list-classes">vich_uploader.command.mapping_list_classes</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -8656,7 +9009,7 @@
         <argument key="make:stimulus-controller">maker.auto_command.make_stimulus_controller</argument>
       </argument>
     </service>
-    <service id=".service_locator.9SdHXY6" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.SrRIadc" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -8738,6 +9091,9 @@
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminDashboardCommand" type="service_closure" id=".EasyCorp\Bundle\EasyAdminBundle\Command\MakeAdminDashboardCommand.lazy"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Command\MakeCrudControllerCommand" type="service_closure" id=".EasyCorp\Bundle\EasyAdminBundle\Command\MakeCrudControllerCommand.lazy"/>
+        <argument key="vich_uploader.command.mapping_debug_class" type="service_closure" id="vich_uploader.command.mapping_debug_class"/>
+        <argument key="vich_uploader.command.mapping_debug" type="service_closure" id="vich_uploader.command.mapping_debug"/>
+        <argument key="vich_uploader.command.mapping_list_classes" type="service_closure" id="vich_uploader.command.mapping_list_classes"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -9016,6 +9372,25 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
+    <service id="vich_uploader.storage" alias="vich_uploader.storage.file_system"/>
+    <service id="Vich\UploaderBundle\Storage\StorageInterface" alias="vich_uploader.storage.file_system"/>
+    <service id="Vich\UploaderBundle\Storage\FileSystemStorage" alias="vich_uploader.storage.file_system"/>
+    <service id="vich_uploader.metadata_driver" alias="vich_uploader.metadata_driver.chain"/>
+    <service id="vich_uploader.metadata.cache" alias="vich_uploader.metadata.cache.file_cache"/>
+    <service id="Vich\UploaderBundle\Mapping\PropertyMappingFactory" alias="vich_uploader.property_mapping_factory"/>
+    <service id="vich_uploader.namer_uniqid" alias="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
+    <service id="vich_uploader.namer_property" alias="Vich\UploaderBundle\Naming\PropertyNamer" public="true"/>
+    <service id="vich_uploader.namer_origname" alias="Vich\UploaderBundle\Naming\OrignameNamer" public="true"/>
+    <service id="vich_uploader.namer_hash" alias="Vich\UploaderBundle\Naming\HashNamer" public="true"/>
+    <service id="vich_uploader.namer_base64" alias="Vich\UploaderBundle\Naming\Base64Namer" public="true"/>
+    <service id="vich_uploader.directory_namer_subdir" alias="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_directory_property" alias="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_directory_current_date_time" alias="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_smart_unique" alias="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Handler\DownloadHandler" alias="vich_uploader.download_handler"/>
+    <service id="Vich\UploaderBundle\Handler\UploadHandler" alias="vich_uploader.upload_handler"/>
+    <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file"/>
+    <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator..DRS2CX"/>
@@ -9048,7 +9423,7 @@
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
     <service id=".service_locator.he7LyUB" alias=".service_locator..DRS2CX"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.154l0m4" alias=".service_locator.ZnmboXZ"/>
+    <service id=".service_locator.ERKSYu7" alias=".service_locator.3GQbGzv"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.0ghLsew" alias=".service_locator.mx0UMmY"/>

@@ -7,8 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
+ #[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
+
+/**
+ * @Vich\Uploadable
+ */
+
 class Announcement
 {
     #[ORM\Id]
@@ -17,10 +24,10 @@ class Announcement
     private ?int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;  
+    private ?string $sells = null;  
     
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?string $category = null;
 
     #[ORM\Column]
     private ?int $price = null;
@@ -28,51 +35,81 @@ class Announcement
     #[ORM\Column]
     private ?int $aera = null;
 
-    #[ORM\Column(length: 255)]
+
+    
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
     private ?string $city = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $picture = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+     private ?string $picture = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $room = null;
+
+    /**
+     * @Vich\UploadableField(mapping="images", fileNameProperty="picture")
+     * @var File
+     */
+    private ?File $pictureFile  = null;
+
+
+    // #[ORM\Column]
+    // private ?int $room_number = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    private ?string $detail = null;
+
+    #[ORM\Column]
+    private ?int $room_number = null;
+
+    // #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Picture::class)]
+    // private Collection $pictures;
+    // private ?string $picture = null;
+
+    // public function __construct()
+    // {
+    //     $this->pictures = new ArrayCollection();
+    // }
+
+    
 
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getCategory();
     }
 
-    
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getSells(): ?string
     {
-        return $this->name;
+        return $this->sells;
     }
 
-    public function setName(string $name): self
+    public function setSells(string $sells): self
     {
-        $this->name = $name;
+        $this->sells = $sells;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getCategory(): ?string
     {
-        return $this->type;
+        return $this->category;
     }
 
-    public function setType(string $type): self
+    public function setCategory(string $category): self
     {
-        $this->type = $type;
+        $this->category = $category;
 
         return $this;
     }
@@ -101,6 +138,8 @@ class Announcement
         return $this;
     }
 
+    
+
     public function getCity(): ?string
     {
         return $this->city;
@@ -112,6 +151,7 @@ class Announcement
 
         return $this;
     }
+
 
     public function getPicture(): ?string
     {
@@ -125,26 +165,74 @@ class Announcement
         return $this;
     }
 
-    public function getRoom(): ?string
+    public function setPictureFile(File $picture = null)
     {
-        return $this->room;
+        $this->pictureFile = $picture;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($picture) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    public function setRoom(string $room): self
+    public function getPictureFile()
     {
-        $this->room = $room;
+        return $this->pictureFile;
+    }
+
+    public function getDetail(): ?string
+    {
+        return $this->detail;
+    }
+
+    public function setDetail(string $detail): self
+    {
+        $this->detail = $detail;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    /**
+     * @return Collection<int, Picture>
+     */
+    public function getPictures(): Collection
     {
-        return $this->description;
+        return $this->pictures;
     }
 
-    public function setDescription(string $description): self
+    public function addPicture(Picture $picture): self
     {
-        $this->description = $description;
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+            $picture->setAnnouncement($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($file->getAnnouncement() === $this) {
+                $file->setAnnouncement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRoomNumber(): ?int
+    {
+        return $this->room_number;
+    }
+
+    public function setRoomNumber(int $room_number): self
+    {
+        $this->room_number = $room_number;
 
         return $this;
     }

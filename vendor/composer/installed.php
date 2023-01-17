@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-dev',
-        'version' => 'dev-dev',
-        'reference' => '0b651761090b45b76ad4c36d6e1b261803c559de',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'd87e1df98fd145d3de5ff66ff68b35a0225f9fec',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-dev',
-            'version' => 'dev-dev',
-            'reference' => '0b651761090b45b76ad4c36d6e1b261803c559de',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'd87e1df98fd145d3de5ff66ff68b35a0225f9fec',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -187,6 +187,15 @@
             'reference' => '88354616f4cf4f6620910fd035e282173ba453e8',
             'type' => 'library',
             'install_path' => __DIR__ . '/../friendsofphp/proxy-manager-lts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'jms/metadata' => array(
+            'pretty_version' => '2.7.0',
+            'version' => '2.7.0.0',
+            'reference' => '283c714831d272d78ddd6e52e08ac16d76be30fd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jms/metadata',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -430,8 +439,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
@@ -1331,6 +1340,15 @@
             'reference' => '3ffcf4b7d890770466da3b2666f82ac054e7ec72',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twig/twig',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'vich/uploader-bundle' => array(
+            'pretty_version' => '2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => '6c1263680312d0b788830c70c1087dade9feddb8',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../vich/uploader-bundle',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

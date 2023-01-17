@@ -14,6 +14,7 @@ return [
         '/announcement' => [[['_route' => 'app_announcement', '_controller' => 'App\\Controller\\AnnouncementController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/phpinfo' => [[['_route' => 'phpinfo', '_controller' => 'App\\Controller\\HomeController::phpinfoAction'], null, null, null, false, false, null]],
+        '/property' => [[['_route' => 'app_property', '_controller' => 'App\\Controller\\PropertyController::index'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
